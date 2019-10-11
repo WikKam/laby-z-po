@@ -3,8 +3,8 @@ import org.junit.Assert;
 import org.junit.Test;
 public class Vector2dTest {
     @Test
-    public void precidesTest(){
-        Assert.assertTrue(new Vector2d(1,1).precides(new Vector2d(10,10)));
+    public void precedesTest(){
+        Assert.assertTrue(new Vector2d(1,1).precedes(new Vector2d(10,10)));
     }
     @Test
     public void followsTest(){
@@ -27,12 +27,16 @@ public class Vector2dTest {
         Assert.assertEquals(new Vector2d(1,1).opposite(),new Vector2d(-1,-1));
     }
     @Test
-    public void substractTest(){
-        Assert.assertEquals(new Vector2d(1,1).substract(new Vector2d(-1,-1)),new Vector2d(2,2));
+    public void subtractTest(){
+        Assert.assertEquals(new Vector2d(1,1).subtract(new Vector2d(-1,-1)),new Vector2d(2,2));
     }
     @Test
     public void equalsTest(){
         Assert.assertEquals(new Vector2d(1,1),new Vector2d(1,1));
+    }
+    @Test
+    public void toStringTest(){
+        Assert.assertEquals(new Vector2d(1,1).toString(),"(1,1)");
     }
 
 }
