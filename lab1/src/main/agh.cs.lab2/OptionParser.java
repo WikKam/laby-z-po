@@ -3,7 +3,7 @@ package agh.cs.lab2;
 import java.util.Arrays;
 
 public class OptionParser {
-    public static MoveDirection[] parser(String[] args){
+    public static MoveDirection[] parse(String[] args){
         return Arrays.stream(args)
                 .filter(x-> x.equals("f")||
                         x.equals("forward")||

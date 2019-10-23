@@ -34,7 +34,33 @@ public class Animal {
                             break;
                     }
                     break;
+                case BACKWARD:
+                    switch (direction){
+                        case NORTH:
+                            if(position.y>0)
+                                this.position = new Vector2d(position.x,position.y-1);
+                            break;
+                        case EAST:
+                            if(position.x>0)
+                                this.position = new Vector2d(position.x-1,position.y);
+                            break;
+                        case SOUTH:
+                            if(position.y<4)
+                                this.position = new Vector2d(position.x,position.y+1);
+                            break;
+                        case WEST:
+                            if(position.x<4)
+                                this.position = new Vector2d(position.x+1,position.y);
+                            break;
+                    }
+                    break;
             }
 
+        }
+        public Vector2d getPosition(){
+            return this.position;
+        }
+        public MapDirection getDirection(){
+            return this.direction;
         }
 }
