@@ -26,6 +26,13 @@ public class RectangularMap implements IWorldMap {
 
     @Override
     public void run(MoveDirection[] directions) {
+        int i =0 ;
+        while(i<directions.length){
+            for(Animal animal : animals){
+                animal.move(directions[i]);
+                i++;
+            }
+        }
 
     }
 
@@ -43,5 +50,8 @@ public class RectangularMap implements IWorldMap {
            if(animal.getPosition().equals(position))return animal;
        }
         return null;
+    }
+    public String toString(){
+        return MapVisualiser
     }
 }
