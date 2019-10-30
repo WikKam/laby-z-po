@@ -10,13 +10,18 @@ public class WorldIntegrationTest {
     public void IntegrationTest(){
         MoveDirection[] directions = new OptionParser().parse(args);
         IWorldMap map = new RectangularMap(10, 5);
-        map.place(new Animal(map));
-        map.place(new Animal(map,new Vector2d(3,4)));
+        Assert.assertFalse(map.canMoveTo(new Vector2d(11,6)));
+        Animal animal1 = new Animal(map);
+        map.place(animal1);
+        Assert.assertEquals(map.objectAt(new Vector2d(2,2)),animal1);
+        Assert.assertTrue(map.isOccupied(new Vector2d(2,2)));
+        Animal animal2 = new Animal(map,new Vector2d(3,4));
+        map.place(animal2);
+        Assert.assertTrue(map.isOccupied(new Vector2d(3,4)));
+        Assert.assertEquals(map.objectAt(new Vector2d(3,4)),animal2);
         map.run(directions);
         RectangularMap temp = (RectangularMap)map;
         Assert.assertEquals(temp.getAnimals().get(0).getPosition(),new Vector2d(2,2));
         Assert.assertEquals(temp.getAnimals().get(1).getPosition(),new Vector2d(3,4));
-
-        System.out.println(map.toString());
     }
 }

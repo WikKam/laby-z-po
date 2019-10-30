@@ -30,7 +30,7 @@ public class RectangularMap implements IWorldMap {
         while(i<directions.length){
             for(Animal animal : animals){
                 animal.move(directions[i]);
-                System.out.println(this.toString());
+                /*System.out.println(this.toString());*/
                 i++;
             }
         }
