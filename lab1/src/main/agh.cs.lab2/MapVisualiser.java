@@ -68,7 +68,11 @@ public class MapVisualiser {
         if (this.map.isOccupied(currentPosition)) {
             Object object = this.map.objectAt(currentPosition);
             if (object != null) {
-                result = object.toString();
+                if(object instanceof Animal){
+                    Animal temp = (Animal)object;
+                    result = temp.getShortString();
+                }
+                else result = object.toString();
             } else {
                 result = EMPTY_CELL;
             }

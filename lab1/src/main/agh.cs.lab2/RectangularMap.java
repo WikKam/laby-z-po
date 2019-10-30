@@ -30,6 +30,7 @@ public class RectangularMap implements IWorldMap {
         while(i<directions.length){
             for(Animal animal : animals){
                 animal.move(directions[i]);
+                System.out.println(this.toString());
                 i++;
             }
         }
@@ -54,6 +55,8 @@ public class RectangularMap implements IWorldMap {
     public String toString(){
         MapVisualiser visualise = new MapVisualiser(this);
         return visualise.draw(new Vector2d(0,0), new Vector2d(width,height));
-
+    }
+    public List<Animal> getAnimals(){
+        return this.animals;
     }
 }

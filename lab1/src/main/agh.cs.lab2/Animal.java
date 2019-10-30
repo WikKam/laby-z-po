@@ -6,7 +6,12 @@ public class Animal {
         private Vector2d position = new Vector2d(2,2);
         private MapDirection direction = NORTH;
         private IWorldMap map;
-        public String toString(){
+
+    public Animal() {
+
+    }
+
+    public String toString(){
             return position.toString() + " " + direction.toString();
         }
         public void move(MoveDirection dir){
@@ -25,7 +30,7 @@ public class Animal {
                             break;
                         case EAST:
                             if(map.canMoveTo(EAST.toUnitVector().add(position)))
-                                this.position = this.position.add(NORTH.toUnitVector());
+                                this.position = this.position.add(EAST.toUnitVector());
                             break;
                         case SOUTH:
                             if(map.canMoveTo(SOUTH.toUnitVector().add(position)))
@@ -40,20 +45,20 @@ public class Animal {
                 case BACKWARD:
                     switch (direction){
                         case NORTH:
-                            if(position.y>0)
-                                this.position = new Vector2d(position.x,position.y-1);
+                            if(map.canMoveTo(NORTH.toUnitVector().add(position)))
+                                this.position = position.subtract(NORTH.toUnitVector());
                             break;
                         case EAST:
-                            if(position.x>0)
-                                this.position = new Vector2d(position.x-1,position.y);
+                            if(map.canMoveTo(EAST.toUnitVector().add(position)))
+                                this.position = position.subtract(EAST.toUnitVector());
                             break;
                         case SOUTH:
-                            if(position.y<4)
-                                this.position = new Vector2d(position.x,position.y+1);
+                            if(map.canMoveTo(SOUTH.toUnitVector().add(position)))
+                                this.position = position.subtract(SOUTH.toUnitVector());
                             break;
                         case WEST:
-                            if(position.x<4)
-                                this.position = new Vector2d(position.x+1,position.y);
+                            if(map.canMoveTo(WEST.toUnitVector().add(position)))
+                                this.position = position.subtract(WEST.toUnitVector());
                             break;
                     }
                     break;
