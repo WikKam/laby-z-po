@@ -24,4 +24,11 @@ public class WorldIntegrationTest {
         Assert.assertEquals(temp.getAnimals().get(0).getPosition(),new Vector2d(2,2));
         Assert.assertEquals(temp.getAnimals().get(1).getPosition(),new Vector2d(3,4));
     }
+
+    @Test
+    public void placeTest(){
+        RectangularMap temp = new RectangularMap(10,10);
+        Animal test = new Animal(temp, new Vector2d(-2,-2));
+        Assert.assertFalse(temp.place(test));
+    }
 }

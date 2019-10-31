@@ -8,8 +8,9 @@ import static agh.cs.lab2.MapDirection.*;
 import static agh.cs.lab2.MoveDirection.*;
 
 public class AnimalTest {
-    private Animal testSub1 = new Animal();
-    private Animal testSub2 = new Animal();
+    private RectangularMap world = new RectangularMap(4,4);
+    private Animal testSub1 = new Animal(world);
+    private Animal testSub2 = new Animal(world);
     private Vector2d testVec = new Vector2d(2,2);
     private Vector2d endDest = new Vector2d(3,3);
     @Test
@@ -25,11 +26,11 @@ public class AnimalTest {
         testSub1.move(MoveDirection.BACKWARD);
         testSub1.move(LEFT);
         testSub1.move(MoveDirection.BACKWARD);
-        Assert.assertEquals(testSub1.getPosition(),testSub2.getPosition());
+        Assert.assertEquals(testSub1.getPosition(),testVec);
     }
     @Test
     public void moveAboveBoundsTest(){
-        Animal testSub =new Animal();
+        Animal testSub =new Animal(world);
         testSub.move(FORWARD);
         testSub.move(FORWARD);
         testSub.move(FORWARD);

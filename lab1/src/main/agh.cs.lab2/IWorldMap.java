@@ -13,11 +13,11 @@ public interface IWorldMap {
     /**
      * Place a animal on the map.
      *
-     * @param animal
+     * @param element
      *            The animal to place on the map.
      * @return True if the animal was placed. The animal cannot be placed if the map is already occupied.
      */
-    boolean place(Animal animal);
+    boolean place(AbstractWorldMapElement element);
 
     /**
      * Move the animal on the map according to the provided move directions. Every

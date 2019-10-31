@@ -29,12 +29,12 @@ public class MapDirectionTest {
     @Test
     public void unitTest(){
         MapDirection test = MapDirection.NORTH;
-        Assert.assertEquals(test.toUnitVector(),new Vector2d(1,0));
-        test = MapDirection.EAST;
         Assert.assertEquals(test.toUnitVector(),new Vector2d(0,1));
+        test = MapDirection.EAST;
+        Assert.assertEquals(test.toUnitVector(),new Vector2d(1,0));
         test = MapDirection.SOUTH;
-        Assert.assertEquals(test.toUnitVector(),new Vector2d(-1,0));
-        test = MapDirection.WEST;
         Assert.assertEquals(test.toUnitVector(),new Vector2d(0,-1));
+        test = MapDirection.WEST;
+        Assert.assertEquals(test.toUnitVector(),new Vector2d(-1,0));
     }
 }

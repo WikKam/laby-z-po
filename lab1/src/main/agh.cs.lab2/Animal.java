@@ -2,15 +2,9 @@ package agh.cs.lab2;
 
 import static agh.cs.lab2.MapDirection.*;
 
-public class Animal {
-        private Vector2d position = new Vector2d(2,2);
+public class Animal extends AbstractWorldMapElement {
         private MapDirection direction = NORTH;
         private IWorldMap map;
-
-    public Animal() {
-
-    }
-
     public String toString(){
             return position.toString() + " " + direction.toString();
         }
@@ -23,54 +17,20 @@ public class Animal {
                     this.direction = this.direction.previous();
                     break;
                 case FORWARD:
-                    switch(direction){
-                        case NORTH:
-                            if(map.canMoveTo(NORTH.toUnitVector().add(position)))
-                                this.position = this.position.add(NORTH.toUnitVector());
-                            break;
-                        case EAST:
-                            if(map.canMoveTo(EAST.toUnitVector().add(position)))
-                                this.position = this.position.add(EAST.toUnitVector());
-                            break;
-                        case SOUTH:
-                            if(map.canMoveTo(SOUTH.toUnitVector().add(position)))
-                                this.position = this.position.add(SOUTH.toUnitVector());
-                            break;
-                        case WEST:
-                            if(map.canMoveTo(WEST.toUnitVector().add(position)))
-                                this.position = this.position.add(WEST.toUnitVector());
-                            break;
-                    }
+                    if(map.canMoveTo(direction.toUnitVector().add(this.position)))
+                        this.position = this.position.add(direction.toUnitVector());
                     break;
                 case BACKWARD:
-                    switch (direction){
-                        case NORTH:
-                            if(map.canMoveTo(NORTH.toUnitVector().add(position)))
-                                this.position = position.subtract(NORTH.toUnitVector());
-                            break;
-                        case EAST:
-                            if(map.canMoveTo(EAST.toUnitVector().add(position)))
-                                this.position = position.subtract(EAST.toUnitVector());
-                            break;
-                        case SOUTH:
-                            if(map.canMoveTo(SOUTH.toUnitVector().add(position)))
-                                this.position = position.subtract(SOUTH.toUnitVector());
-                            break;
-                        case WEST:
-                            if(map.canMoveTo(WEST.toUnitVector().add(position)))
-                                this.position = position.subtract(WEST.toUnitVector());
-                            break;
-                    }
+                    if(map.canMoveTo(this.position.subtract(direction.toUnitVector())))
+                        this.position = this.position.subtract(direction.toUnitVector());
                     break;
             }
 
         }
-        public Vector2d getPosition(){
-            return this.position;
-        }
         public MapDirection getDirection(){
             return this.direction;
         }
+        @Override
         public String getShortString(){
             switch(direction) {
                 case NORTH:
@@ -86,10 +46,11 @@ public class Animal {
             }
         }
         public Animal(IWorldMap map){
-            this.map = map;
+            this(map, new Vector2d(2,2));
+            /*this.map = map;*/
         }
-         public Animal(IWorldMap map, Vector2d position){
+        public Animal(IWorldMap map, Vector2d position){
+        super(position);
         this.map = map;
-        this.position = position;
         }
 }
