@@ -3,16 +3,19 @@ package agh.cs.lab2;
 import java.util.Arrays;
 
 public class OptionParser {
-    public static MoveDirection[] parse(String[] args){
-        return Arrays.stream(args)
-                .filter(x-> x.equals("f")||
+    public static MoveDirection[] parse(String[] args) throws  IllegalArgumentException{
+        Arrays.stream(args).forEach( x -> {
+                if(!(x.equals("f")||
                         x.equals("forward")||
                         x.equals("b")||
                         x.equals("backward")||
                         x.equals("r")||
                         x.equals("right")||
                         x.equals("l")||
-                        x.equals("left"))
+                        x.equals("left")))throw new IllegalArgumentException(x +" is not legal move specification");
+                }
+        );
+        return Arrays.stream(args)
                 .map(OptionParser::stringToMove)
                 .toArray(MoveDirection[]::new);
     }

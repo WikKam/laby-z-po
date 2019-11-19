@@ -3,6 +3,9 @@ import org.junit.Assert;
 import org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.fail;
+
 public class RectangularMapTest {
    private RectangularMap testMap = new RectangularMap(5,5);
    private Animal testAnimal = new Animal(testMap);
@@ -19,7 +22,12 @@ public class RectangularMapTest {
     public void placeTest(){
         Animal animal2 = new Animal(testMap);
         Assert.assertTrue(testMap.place(testAnimal));
-        Assert.assertFalse(testMap.place(animal2));
+        try{
+            testMap.place(animal2);
+            fail();
+        }catch(Exception e){
+
+        }
     }
     @Test
     public void isOccupiedTest(){
@@ -30,7 +38,7 @@ public class RectangularMapTest {
     }
     @Test
     public void runTest(){
-        String[] args = {"f", "forward","b","backward","r","right","l","left","a","abcd"};
+        String[] args = {"f", "forward","b","backward","r","right","l","left"};
         MoveDirection[] directions = OptionParser.parse(args);
         IWorldMap map = new RectangularMap(10, 5);
         Assert.assertFalse(map.canMoveTo(new Vector2d(11,6)));

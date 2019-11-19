@@ -1,10 +1,14 @@
 package agh.cs.lab2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static agh.cs.lab2.MapDirection.*;
 
 public class Animal extends AbstractWorldMapElement {
         private MapDirection direction = NORTH;
-        private IWorldMap map;
+        private AbstractWorldMap map;
+        private List<IPositionChangeObserver> observers = new ArrayList<>();
     public String toString(){
             return position.toString() + " " + direction.toString();
         }
@@ -45,12 +49,28 @@ public class Animal extends AbstractWorldMapElement {
                     return null;
             }
         }
-        public Animal(IWorldMap map){
+        public Animal(AbstractWorldMap map){
             this(map, new Vector2d(2,2));
             /*this.map = map;*/
         }
-        public Animal(IWorldMap map, Vector2d position){
+        public Animal(AbstractWorldMap map, Vector2d position){
         super(position);
         this.map = map;
+        observers.add(map);
+        if(map instanceof UnboundedMap){
+        IPositionChangeObserver temp = ((UnboundedMap) map).boundary;
+        observers.add(temp);
+        }
+        }
+        public void addObserver(IPositionChangeObserver observer){
+            observers.add(observer);
+        }
+        public void removeObserver(IPositionChangeObserver observer){
+            observers.remove(observer);
+        }
+        public void positionChanged(Vector2d oldPos){
+            for(IPositionChangeObserver observer : observers){
+                observer.positionChanged(oldPos, this.getPosition());
+            }
         }
 }

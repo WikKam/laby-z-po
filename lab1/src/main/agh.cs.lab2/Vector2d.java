@@ -38,4 +38,10 @@ public class Vector2d {
         Vector2d temp = (Vector2d)other;
         return(this.x==temp.x&&this.y==temp.y);
     }
+    public int hashCode(){
+        int hash = 13;
+        hash += this.x * 31;
+        hash += this.y * 17;
+        return hash;
+    }
 }

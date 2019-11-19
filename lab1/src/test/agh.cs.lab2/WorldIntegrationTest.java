@@ -4,8 +4,11 @@ import org.junit.Assert;
 import org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.fail;
+
 public class WorldIntegrationTest {
-    private String[] args = {"f", "forward","b","backward","r","right","l","left","a","abcd"};
+    private String[] args = {"f", "forward","b","backward","r","right","l","left"};
     @Test
     public void IntegrationTest(){
         MoveDirection[] directions = new OptionParser().parse(args);
@@ -29,6 +32,11 @@ public class WorldIntegrationTest {
     public void placeTest(){
         RectangularMap temp = new RectangularMap(10,10);
         Animal test = new Animal(temp, new Vector2d(-2,-2));
-        Assert.assertFalse(temp.place(test));
+        try {
+            temp.place(test);
+            fail();
+        }catch (Exception e){
+
+        }
     }
 }

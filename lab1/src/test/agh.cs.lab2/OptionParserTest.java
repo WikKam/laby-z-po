@@ -7,7 +7,7 @@ import static agh.cs.lab2.MoveDirection.*;
 public class OptionParserTest {
     private String[] args = {"f", "forward","b","backward","r","right","l","left","a","abcd"};
     private MoveDirection[] result ={FORWARD,FORWARD,BACKWARD,BACKWARD,RIGHT,RIGHT,LEFT,LEFT};
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void parsingTest(){
         MoveDirection[] parsedData = OptionParser.parse(args);
         Assert.assertArrayEquals(parsedData,result);

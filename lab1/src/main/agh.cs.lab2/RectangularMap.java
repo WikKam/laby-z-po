@@ -1,11 +1,10 @@
 package agh.cs.lab2;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RectangularMap extends AbstractWorldMap {
     private int width;
-    private Vector2d lowerLeft;
-    private Vector2d upperRight;
     private int height;
    /* List<Animal> animals = new ArrayList<>();*/
     public RectangularMap(int width, int height){
@@ -17,10 +16,9 @@ public class RectangularMap extends AbstractWorldMap {
     @Override
     public boolean canMoveTo(Vector2d position) {
        if(!position.follows(lowerLeft)||!position.precedes(upperRight)) return false;
-       if(isOccupied(position)) return false;
-       return true;
+        return !isOccupied(position) || objectAt(position) instanceof Grass;
     }
     public List<AbstractWorldMapElement> getAnimals(){
-        return this.elements;
+        return Collections.unmodifiableList(this.elements);
     }
 }
